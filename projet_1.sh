@@ -3,7 +3,6 @@
 OnOff=$(date +"%H")
 OnOff=$(($OnOff+$un))
 moyenne=0
-douze=12
 un=1
 nbmin=$(date +"%M")
 HDebut=9
