@@ -69,13 +69,16 @@ do
         then
                 if [ "$OnOff" == "21" ];
                 then
-                        moyenne=$(($moyenne/$douze));
-                        curl --data chat_id="-1001866478445" --data-urlencode "text=Bonsoir, ce matin le prix du BTC était à $prixdebut. Le prix moyen sur les 12 dernières heures était de $moyenne, actuellement il est à $prix" "https://api.telegram.org/bot5984608472:AAFyjAeWv9aADfs7qUaMI1bFVMpeGp4m56k/sendMessage?parse_node=HTML";
-                        prixfin=$prix;
-                then
-                        moyenne=$(($moyenne/$douze));
-                        curl --data chat_id="-1001866478445" --data-urlencode "text=Bonsoir, ce matin le prix du BTC était à $prixdebut. Le prix moyen sur les 12 dernières heures était de $moyenne, actuellement il est à $prix" "https://api.telegram.org/bot5984608472:AAFyjAeWv9aADfs7qUaMI1bFVMpeGp4m56k/sendMessage?parse_node=HTML";
-                        prixfin=$prix;
+                        moyenne=$(($moyenne/$compt));
+                        for i in {0..11}
+                        do
+                                som=$(($som+(${tab[$i]}-$moyenne) ** 2));
+                        done
+                        Vol=$(($sqrt($som/$moyenne)));
+                        compt=0
+
+                        curl --data chat_id="-1001866478445" --data-urlencode "text=Bonsoir, ce matin le prix du BTC était à $prixdebut. Le prix moyen sur les 12 dernières heures était de $moyenne avec une volatilite de $Vol actuellement il est à $prix" "https://api.telegram.org/bot5984608472:AAFyjAeWv9aADfs7qUaMI1bFVMpeGp4m56k/sendMessage?parse_node=HTML";
+                        prixdebut=$prix;
                         moyenne=0;
                         deja=0;
                 fi
