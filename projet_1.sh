@@ -29,12 +29,6 @@ do
         rm code.txt;
         curl https://www.netdania.com/indices/bitcoin > code.txt;
         prix=$(cat code.txt | sed -n '/nd-fq-last-container nd-fq-last/{n;p;}' | grep -oP "(?<=>)\w+");
-#       echo BTC $prix
-        nbmin=$(($nbmin+$un))
-        tab[$compt]=$prix
-        compt=$(($compt+$un))
-        moyenne=$(($moyenne+$prix))
-
 
         #Somme des prix chaque heure
         if [ "$nbmin" == "60" ];
@@ -50,7 +44,8 @@ do
                 tab[$compt]=$prix;
                 compt=$(($compt+$un));
         fi
-
+        nbmin=$(($nbmin+$un))
+        
         #Message de debut de journée
         if [ "$deja" == "1" ];
         then
