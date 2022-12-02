@@ -1,15 +1,13 @@
 #!/bin/bash
 #num bot: 5984608472:AAFyjAeWv9aADfs7qUaMI1bFVMpeGp4m56k
 OnOff=$(date +"%H")
+OnOff=$(($OnOff+$un))
 moyenne=0
 douze=12
 un=1
-OnOff=$(($OnOff+$un))
-echo $OnOff
 nbmin=$(date +"%M")
 HDebut=9
 HFin=21
-prix=16450
 min=16400
 max=17000
 deja=1  #cette variable permet de matriser s'il faut envoyer un message de compte rendu à 9h et 21h.Il se réintialise à chaque changement d'heure.
